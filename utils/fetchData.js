@@ -4,11 +4,10 @@ async function fetchAirQuality() {
   const API_KEY = process.env.OPENWEATHER_KEY;
   const LAT = 28.6139, LON = 77.2090; // Delhi
   const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${LAT}&lon=${LON}&appid=${API_KEY}`;
-  
-  console.log("Using API Key:", process.env.OPENWEATHER_KEY);
 
   const res = await axios.get(url);
   const d = res.data.list[0];
+
   return {
     pm25: d.components.pm2_5,
     pm10: d.components.pm10,
@@ -21,10 +20,10 @@ async function fetchAirQuality() {
 
 function simulateWaterNoise() {
   return {
-    ph: (6.5 + Math.random() * 2).toFixed(2),
-    dissolved_oxygen: (5 + Math.random() * 5).toFixed(2),
-    contaminants: (Math.random() * 50).toFixed(2),
-    noise: (40 + Math.random() * 50).toFixed(1)
+    ph: parseFloat((6.5 + Math.random() * 2).toFixed(2)),
+    dissolved_oxygen: parseFloat((5 + Math.random() * 5).toFixed(2)),
+    contaminants: parseFloat((Math.random() * 50).toFixed(2)),
+    noise: parseFloat((40 + Math.random() * 50).toFixed(1))
   };
 }
 
